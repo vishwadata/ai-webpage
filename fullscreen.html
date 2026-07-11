@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Video Background</title>
+    <link rel="stylesheet" href="style.css">
+    /* Reset default margins */
+    
+    <style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevents scrollbars if the video overflows slightly */
+}
+
+/* The Magic Video Styling */
+.background-video {
+    position: fixed; /* Keeps it in place even if you scroll */
+    top: 0;
+    left: 0;
+    width: 100vw; /* 100% of viewport width */
+    height: 100vh; /* 100% of viewport height */
+    object-fit: cover; /* Ensures the video fills the box without squishing */
+    z-index: -1; /* Pushes the video behind your content */
+}
+
+/* Styling for content on top of the video */
+.content {
+    position: relative; /* Keeps it above the video */
+    z-index: 1;
+    color: white; /* Make text visible over a dark video */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* Centers content vertically */
+    text-align: center;
+    font-family: sans-serif;
+    background: rgba(0, 0, 0, 0.4); /* Optional: Adds a dark overlay to make text easier to read */
+}
+
+.gradient-heading {
+            margin: 0;
+            font-size: 3rem; /* Adjust text size as needed */
+            font-weight: bold;
+            text-transform: capitalize ; /* Matches the text in the image */
+            
+            /* KEY PART: Create the gradient background */
+            background-image: linear-gradient(to right, #30e38a, #20c997, #2097e3, #60a5fa);
+            
+            /* KEY PART: Clip the background to the text and make the text transparent */
+            -webkit-background-clip: text; /* For cross-browser support */
+            background-clip: text;
+            color: transparent; /* Makes the gradient visible within the letterforms */
+            
+            /* Slight spacing for a clean look */
+            letter-spacing: 0.01em; 
+        }
+
+    .dissolve-header {
+    animation: dissolveText 3s ease-in-out 7.3s forwards;
+    }
+
+/* The actual animation instructions */
+@keyframes dissolveText {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden; /* Ensures you can't accidentally highlight or click the invisible text */
+    }
+}
+
+
+</style>
+
+</head>
+<body>
+
+    <video autoplay loop muted playsinline class="background-video">
+        <source src="images/intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="content">
+        <h1 class="gradient-heading dissolve-header">hai welcome to Vishwa Bharath world!</h1>
+    </div>
+
+</body>
+</html>
+
